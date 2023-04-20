@@ -5,6 +5,7 @@ from pydblite import Base
 from model.patient import Patient
 from model.person import Person
 from model.blood_type import BloodType
+from tabulate import tabulate
 
 
 class HospitalDb:
@@ -20,16 +21,25 @@ class HospitalDb:
     def populate_db(self, rows_qty=3):
         f = Faker()
         for _ in range(rows_qty):
-            self.db.insert(
-                blood_type=choice(BloodType.BLOOD_TYPES), doctor=f.name(), first_name=f.name(),
-                height=random.uniform(3.0, 6.0),
-                last_name=f.name(),
-                ssn=f.ssn(), weight=random.uniform(22, 330))
             self.db.insert(first_name=f.name(), last_name=f.name(), ssn=f.ssn(),
                            blood_type=choice(BloodType.BLOOD_TYPES),
-                           height=random.uniform(3.0, 6.0),
-                           weight=random.uniform(22, 330),
+                           height=round(random.uniform(3.0, 6.0), 2),
+                           weight=round(random.uniform(22, 330), 2),
                            doctor=f.name())
         self.db.commit()
+
+    def show_patients(self):
+        headers = ["ID", "First Name", "Last Name", "SSN", "Blood Type"]
+        data = []
         for r in self.db:
-            print(r)
+            data.append([r["__id__"], r["first_name"], r["last_name"], r["ssn"], r["blood_type"]])
+
+        table = tabulate(data, headers=headers)
+        print(table)
+
+    def get_ids(self):
+        ids = [str(r["__id__"]) for r in self.db]
+        return ids
+
+    def get_patient_by_id(self, patient_id: int):
+        return self.db(__id__=patient_id)
