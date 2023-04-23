@@ -2,15 +2,19 @@ from random import choice
 import random
 from faker import Faker
 from pydblite import Base
+
+import helper.helper
 from model.patient import Patient
 from model.person import Person
 from model.blood_type import BloodType
 from tabulate import tabulate
+import os
 
 
 class HospitalDb:
-    def __init__(self, db_name="patients"):
-        self.db = Base(f'./{db_name}.pdl')
+    def __init__(self, db_name: str):
+        self.db_path = helper.helper.get_project_path() + "/" + db_name + ".pdl"
+        self.db = Base(self.db_path)
 
     def db_setup(self):
         properties_list = [prop for prop in dir(Patient) if
@@ -42,4 +46,11 @@ class HospitalDb:
         return ids
 
     def get_patient_by_id(self, patient_id: int):
-        return self.db(__id__=patient_id)
+        return self.db(__id__=patient_id)[0]
+
+    def delete_db(self):
+        if os.path.exists(self.db_path):
+            os.remove(self.db_path)
+            print("DB File deleted successfully.")
+        else:
+            print("DB file does not exist.")

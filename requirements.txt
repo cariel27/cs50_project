@@ -2,5 +2,4 @@ pytest
 pydblite
 faker
 tabulate
-cowsay
 pyttsx3
