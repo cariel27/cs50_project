@@ -2,6 +2,22 @@ import pyttsx3
 import sys
 from os.path import dirname, abspath
 import os
+import platform
+
+engine = None
+
+
+def get_driver() -> str:
+    op_sys = platform.platform()
+
+    if "macOS" in op_sys:
+        return "nsss"
+    if "win" in op_sys:
+        return "sapi5"
+    if "linux" in op_sys:
+        return "espeak"
+    else:
+        raise Exception("Not supported platform.")
 
 
 def clear():
@@ -42,6 +58,8 @@ def say_patient_data(patient):
 
 
 def say(data: str):
-    engine = pyttsx3.init()
+    global engine
+    if not engine:
+        engine = pyttsx3.init(driverName=get_driver())
     engine.say(data)
     engine.runAndWait()

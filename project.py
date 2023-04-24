@@ -9,10 +9,14 @@ DB_NAME = "cs50_hospital"
 def select_patient(hospital_db: HospitalDb) -> str:
     # Get user input for donor and recipient blood types
     patient_ids = hospital_db.get_ids()
+    print("=" * 65)
+    print("WELCOME TO CS50 HOSPITAL")
+    print("=" * 65)
+    input("Press any key to continue...")
     while True:
         hospital_db.show_patients_by(criteria="all")
         print("#" * 65)
-        print(">>>Select a Patient<<<")
+        print("<<<<<Select a Patient>>>>>")
         print("Type Patient ID: ")
         print("or Press 'Q' to exit", end="\n")
         print("#" * 65)
@@ -34,7 +38,7 @@ def select_patient(hospital_db: HospitalDb) -> str:
 
 def show_patient_options(patient: HospitalDb, h_db):
     while True:
-        print("#" * 65)
+        print("=" * 65)
         print(">>>OPTIONS<<<")
         print("(1) Show Compatible Donors.")
         print("(2) Show Compatible Recipient.")

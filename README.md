@@ -1,4 +1,4 @@
-  # YOUR PROJECT TITLE
+  # CS50 Hospital
     #### Video Demo:  <URL HERE>
     #### Description:
     What will your software do? What features will it have? How will it be executed?
