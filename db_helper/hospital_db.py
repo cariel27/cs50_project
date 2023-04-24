@@ -32,13 +32,19 @@ class HospitalDb:
                            doctor=f.name())
         self.db.commit()
 
-    def show_patients(self):
+    def show_patients_by(self, criteria, **kwargs):
         headers = ["ID", "First Name", "Last Name", "SSN", "Blood Type"]
-        data = []
-        for r in self.db:
-            data.append([r["__id__"], r["first_name"], r["last_name"], r["ssn"], r["blood_type"]])
 
-        table = tabulate(data, headers=headers)
+        match criteria.upper():
+            case "ALL":
+                data = [[r['__id__'], r['first_name'], r['last_name'], r['ssn'], r['blood_type']] for r in self.db]
+            case "COMPATIBLE BLOOD":
+                print("COMPATIBLE PATIENTS")
+                data = [[r['__id__'], r['first_name'], r['last_name'], r['ssn'], r['blood_type']] for r in self.db if
+                        r["blood_type"] in kwargs["compatible_donors"] and r['ssn'] != kwargs["patient"]["ssn"]]
+            case _:
+                raise ValueError("Invalid Criteria.")
+        table = tabulate(data, headers=headers, tablefmt="simple_grid")
         print(table)
 
     def get_ids(self):
