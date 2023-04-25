@@ -12,10 +12,8 @@ def get_driver() -> str:
 
     if "macOS" in op_sys:
         return "nsss"
-    if "win" in op_sys:
+    elif "Windows" in op_sys:
         return "sapi5"
-    if "linux" in op_sys:
-        return "espeak"
     else:
         raise Exception("Not supported platform.")
 

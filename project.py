@@ -17,10 +17,10 @@ def select_patient(hospital_db: HospitalDb) -> str:
         hospital_db.show_patients_by(criteria="all")
         print("#" * 65)
         print("<<<<<Select a Patient>>>>>")
-        print("Type Patient ID: ")
+        print("Type Patient ID")
         print("or Press 'Q' to exit", end="\n")
         print("#" * 65)
-        option = input("ID: ")
+        option = input(">>> ")
 
         if option.upper() == "Q":
             helper.clear()
@@ -42,7 +42,7 @@ def show_patient_options(patient: HospitalDb, h_db):
         print(">>>OPTIONS<<<")
         print("(1) Show Compatible Donors.")
         print("(2) Show Compatible Recipient.")
-        print("(3) Show List of Patients compatible.")
+        print("(3) Show List of compatible patients.")
         print("(4) Back to previous Menu.", end="\n")
         print("#" * 65)
         option = input("Select an option: ")
