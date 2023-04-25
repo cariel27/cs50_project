@@ -1,7 +1,11 @@
-  # CS50 Hospital
-    #### Video Demo:  <URL HERE>
-    #### Description:
-    What will your software do? What features will it have? How will it be executed?
-    What new skills will you need to acquire? What topics will you need to research?
-    If working with one or two classmates, who will do what?
-    In the world of software, most everything takes longer to implement than you expect. And so it’s not uncommon to accomplish less in a fixed amount of time than you hope. What might you consider to be a good outcome for your project? A better outcome? The best outcome?
+# CS50 Hospital
+#### Video Demo:  <URL HERE>
+#### Description
+- This application allows getting patient information in written text and speech. 
+- You can also get the patient's blood compatibility: donors and recipient. 
+- You can get a list of the hospital's potential donors with compatible blood 
+for this patient.
+
+#### How to use
+- Install dependencies: `pip install -r requirements.txt`
+- Run:`python project.py`
