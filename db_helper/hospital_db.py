@@ -2,7 +2,6 @@ from random import choice
 import random
 from faker import Faker
 from pydblite import Base
-
 import helper.helper
 from model.patient import Patient
 from model.person import Person

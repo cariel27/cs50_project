@@ -9,6 +9,7 @@ DB_NAME = "cs50_hospital"
 def select_patient(hospital_db: HospitalDb) -> str:
     # Get user input for donor and recipient blood types
     patient_ids = hospital_db.get_ids()
+    helper.clear()
     print("=" * 65)
     print("WELCOME TO CS50 HOSPITAL")
     print("=" * 65)
