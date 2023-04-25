@@ -19,7 +19,8 @@ def get_driver() -> str:
 
 
 def clear():
-    os.system('cls' if os.name == 'nt' else 'clear')
+    for i in range(10):
+        print()
 
 
 def get_project_path():

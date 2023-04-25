@@ -49,12 +49,15 @@ def show_patient_options(patient: HospitalDb, h_db):
         print()
         match option:
             case "1":
+                helper.clear()
                 compatible_donors = BloodType.get_compatible_donors(recipient_blood_type=patient["blood_type"])
                 print("\nCompatible Donors: ", compatible_donors)
             case "2":
+                helper.clear()
                 compatible_recipient = BloodType.get_compatible_receipts(donor_blood_type=patient["blood_type"])
                 print("\nCompatible Recipients: ", compatible_recipient)
             case "3":
+                helper.clear()
                 compatible_donors = BloodType.get_compatible_donors(recipient_blood_type=patient["blood_type"])
                 h_db.show_patients_by("compatible blood", compatible_donors=compatible_donors, patient=patient)
             case "4":
