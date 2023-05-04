@@ -72,7 +72,7 @@ def show_patient_options(patient: HospitalDb, h_db):
                 print("\nCompatible Donors: ", compatible_donors)
             case "2":
                 helper.clear()
-                compatible_recipient = BloodType.get_compatible_receipts(donor_blood_type=patient["blood_type"])
+                compatible_recipient = BloodType.get_compatible_recipients(donor_blood_type=patient["blood_type"])
                 print("\nCompatible Recipients: ", compatible_recipient)
             case "3":
                 helper.clear()

@@ -54,7 +54,7 @@ class BloodType:
             return cls.AB_POSITIVE_DONOR
 
     @classmethod
-    def get_compatible_receipts(cls, donor_blood_type):
+    def get_compatible_recipients(cls, donor_blood_type):
         blood_type = donor_blood_type.__str__()
         assert blood_type in cls.BLOOD_TYPES, "Invalid blood type."
 
