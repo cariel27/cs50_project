@@ -16,12 +16,21 @@ class HospitalDb:
         self.db = Base(self.db_path)
 
     def db_setup(self):
+        """
+        Creates in-memory DB for patient data by using the Patient class data model.
+        :return:
+        """
         properties_list = [prop for prop in dir(Patient) if
                            isinstance(getattr(Patient, prop), property) and (
                                    prop in vars(Patient) or prop in vars(Person))]
         self.db.create(*properties_list, mode="open")
 
-    def populate_db(self, rows_qty=3):
+    def populate_db(self, rows_qty=10):
+        """
+        Populates in-memory DB with random patient data generate with faker library.
+        :param rows_qty: nbr of patients. Default = 10
+        :return:
+        """
         f = Faker()
         for _ in range(rows_qty):
             self.db.insert(first_name=f.name(), last_name=f.name(), ssn=f.ssn(),
