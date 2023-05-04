@@ -6,7 +6,7 @@ DB_NAME = "cs50_hospital"
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Meow like a cat")
+    parser = argparse.ArgumentParser(description="CS50 Hospital.")
     parser.add_argument("-n", default=10, help="number patients", type=int)
     args = parser.parse_args()
 
