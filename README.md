@@ -1,5 +1,5 @@
 # CS50 Hospital
-#### Video Demo:  <URL HERE>
+#### Video Demo:  https://youtu.be/46Y042bZghk
 #### Description
 - This application allows getting patient information in written text and speech. 
 - You can also get the patient's blood compatibility: donors and recipient. 
