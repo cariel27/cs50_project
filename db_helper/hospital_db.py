@@ -33,12 +33,19 @@ class HospitalDb:
         """
         f = Faker()
         for _ in range(rows_qty):
-            self.db.insert(first_name=f.name(), last_name=f.name(), ssn=f.ssn(),
-                           blood_type=choice(BloodType.BLOOD_TYPES),
-                           height=round(random.uniform(3.0, 6.0), 2),
-                           weight=round(random.uniform(22, 330), 2),
-                           doctor=f.name())
+            self._insert_rows(first_name=f.name(), last_name=f.name(), ssn=f.ssn(),
+                              blood_type=choice(BloodType.BLOOD_TYPES),
+                              height=round(random.uniform(3.0, 6.0), 2),
+                              weight=round(random.uniform(22, 330), 2),
+                              doctor=f.name())
         self.db.commit()
+
+    def _insert_rows(self, first_name, last_name, ssn, blood_type, height, weight, doctor):
+        self.db.insert(first_name=first_name, last_name=last_name, ssn=ssn,
+                       blood_type=blood_type,
+                       height=height,
+                       weight=weight,
+                       doctor=doctor)
 
     def show_patients_by(self, criteria, **kwargs):
         headers = ["ID", "First Name", "Last Name", "SSN", "Blood Type"]
