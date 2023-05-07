@@ -2,12 +2,16 @@ from os.path import dirname, abspath
 import platform
 
 
+def get_platform() -> str:
+    return platform.platform()
+
+
 def get_driver() -> str:
     """
     Get pyttsx3 driver according to the platform.
     :return:
     """
-    op_sys = platform.platform()
+    op_sys = get_platform()
 
     if "macOS" in op_sys:
         return "nsss"

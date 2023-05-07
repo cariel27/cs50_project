@@ -23,7 +23,7 @@ def select_blood():
             sys.exit("Bye.")
 
 
-def select_patient(hospital_db: HospitalDb) -> str:
+def select_patient(hospital_db: HospitalDb, is_voice_enabled=False) -> str:
     # Get user input for donor and recipient blood types
     patient_ids = hospital_db.get_ids()
     helper.clear()
@@ -47,7 +47,7 @@ def select_patient(hospital_db: HospitalDb) -> str:
         elif option in patient_ids:
             helper.clear()
             patient = hospital_db.get_patient_by_id(int(option))
-            say_patient_data(patient)
+            print_patient_data(patient, is_voice_enabled)
             show_patient_options(patient=patient, h_db=hospital_db)
         else:
             print("\n")
@@ -86,17 +86,19 @@ def show_patient_options(patient: HospitalDb, h_db):
                 helper.clear()
 
 
-def say_patient_data(patient):
+def print_patient_data(patient, is_voice_enabled: bool):
     print("\n")
     print("#" * 65)
     print("Patient's First name", patient["first_name"])
-    say("First name " + patient["first_name"])
     print("Last name", patient["last_name"])
-    say("Last name " + patient["last_name"])
     print("Security Social Number", patient["ssn"])
-    say("Security Social Number " + patient["ssn"].replace("-", ""))
     print("Blood type", patient["blood_type"])
-    say("Blood type " + patient["blood_type"].replace("-", " Negative").replace("+", " Positive"))
+
+    if "Windows" in helper.get_platform() and is_voice_enabled:
+        say("First name " + patient["first_name"])
+        say("Last name " + patient["last_name"])
+        say("Security Social Number " + patient["ssn"].replace("-", ""))
+        say("Blood type " + patient["blood_type"].replace("-", " Negative").replace("+", " Positive"))
 
 
 def say(data: str):
